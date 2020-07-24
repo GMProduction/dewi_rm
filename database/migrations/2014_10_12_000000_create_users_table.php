@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username');
             $table->string('password');
-            $table->enum('level');
+            $table->enum('level', ['admin', 'dokter', 'pasien']);
             $table->timestamps();
         });
     }

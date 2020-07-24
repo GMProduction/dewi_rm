@@ -19,14 +19,6 @@ class Master extends Migration
             $table->timestamps();
         });
 
-        Schema::create('obat', function (Blueprint $table){
-            $table->id();
-            $table->string('name');
-            $table->string('name');
-            $table->string('name');
-            $table->timestamps();
-        });
-
         Schema::create('pasien_profil', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
@@ -48,6 +40,23 @@ class Master extends Migration
             $table->foreign('spesialis_id')->references('id')->on('spesialis');
         });
 
+        Schema::create('admin_profil', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('nama');
+            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+        Schema::create('diagnosa', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('dokter_id')->unsigned();
+            $table->bigInteger('pasien_id')->unsigned();
+            $table->text('diagnosa');
+            $table->timestamps();
+            $table->foreign('dokter_id')->references('id')->on('users');
+            $table->foreign('pasien_id')->references('id')->on('users');
+        });
 
     }
 
