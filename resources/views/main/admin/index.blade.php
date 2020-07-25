@@ -2,15 +2,15 @@
 
 @section('content-title')
     <div>
-        <div class="f20 f-bold" style="letter-spacing: 1px;"><i class="fa fa-cube mr-2"></i>Obat</div>
-        <div class="my-text-semi-dark f14">Semua Data Obat Di Rumah Sakit</div>
+        <div class="f20 f-bold" style="letter-spacing: 1px;"><i class="fa fa-cube mr-2"></i>Admin</div>
+        <div class="my-text-semi-dark f14">Semua Data Admin Di Rumah Sakit</div>
     </div>
 @endsection
 @section('breadcrumb')
     <div>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-            <li class="breadcrumb-item active">Obat</li>
+            <li class="breadcrumb-item active">Admin</li>
         </ol>
     </div>
 @endsection
@@ -18,32 +18,30 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex align-items-center">
-                <div class="mr-auto p-2 f20 f-bold">List Obat</div>
-                <a href="/admin/obat/add" class="btn my-button my-rounded pl-3 pr-3">
+                <div class="mr-auto p-2 f20 f-bold">List Admin</div>
+                <a href="/admin/admin/add" class="btn my-button my-rounded pl-3 pr-3">
                     <i class="fa fa-plus mr-3"></i>New
                 </a>
             </div>
             <div class="dropdown-divider mt-4"></div>
-            @if(count($obat) > 0)
+            @if(count($admin) > 0)
                 <table id="my-table" class="table display">
                     <thead>
                     <tr>
                         <th width="10%">#</th>
-                        <th width="15%">Obat</th>
-                        <th width="15%">Harga</th>
+                        <th width="15%">Nama Lengkap</th>
                         <th width="10%" class="text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($obat as $v)
+                    @foreach($admin as $v)
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $v->nama }}</td>
-                            <td>{{ $v->harga }}</td>
                             <td class="text-center">
-                                <a data-id="{{ $v->id }}" href="/admin/obat/edit/{{$v->id}}"><i
+                                <a data-id="{{ $v->id }}" href="/admin/admin/edit/{{$v->id}}"><i
                                         class="fa fa-edit"></i></a>
-                                <a data-id="{{ $v->id }}" href="#" onclick="destroy('{{ $v->id }}')"><i class="fa fa-trash-o"></i></a>
+                                <a data-id="{{ $v->id }}" href="#" onclick="destroy('{{ $v->user->id }}')"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -80,7 +78,8 @@
                     let data = {
                         '_token': '{{ csrf_token() }}'
                     };
-                    let res = await $.post('/admin/obat/destroy/'+id, data);
+                    let res = await $.post('/admin/admin/destroy/'+id, data);
+                    console.log(res);
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
@@ -90,7 +89,6 @@
                 }
             })
         }
-
         $(document).ready(function () {
             $('#my-table').DataTable({
                 "scrollX": true

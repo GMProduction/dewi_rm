@@ -31,7 +31,6 @@
                         <th width="10%">#</th>
                         <th width="15%">Nama Lengkap</th>
                         <th width="15%">Spesialis</th>
-                        <th width="15%">Alamat</th>
                         <th width="10%" class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -41,7 +40,6 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $dokter->nama }}</td>
                             <td>{{ $dokter->spesialis->name }}</td>
-                            <td>{{ $dokter->alamat }}</td>
                             <td class="text-center">
                                 <a data-id="{{ $dokter->id }}" href="/admin/dokter/edit/{{$dokter->id}}"><i
                                         class="fa fa-edit"></i></a>

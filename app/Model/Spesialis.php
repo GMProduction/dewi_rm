@@ -8,4 +8,10 @@ class Spesialis extends Model
 {
     //
     protected $table = 'spesialis';
+
+
+    public function dokter()
+    {
+        return $this->hasMany(Dokter::class);
+    }
 }

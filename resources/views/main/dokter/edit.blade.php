@@ -45,7 +45,6 @@
                                 <option value="{{ $v->id }}" {{ $dokter->spesialis->id == $v->id ? 'selected' : ''}}>{{  $v->name }}</option>
                             @endforeach
                         </x-lazy.input.select>
-                        <x-lazy.input.area id="alamat" name="alamat" label="Alamat">{{ $dokter->alamat }}</x-lazy.input.area>
                         <div class="dropdown-divider mt-3 mb-3"></div>
                         <div class="text-right">
                             <button class="btn my-button my-rounded pl-3 pr-3"><i class="fa fa-send-o mr-2"></i>Save

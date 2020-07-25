@@ -38,7 +38,8 @@
                     <form method="POST" action="/admin/obat/patch">
                         @csrf
                         <input name="id" type="hidden" value="{{ $obat->id }}">
-                        <x-lazy.input.text id="name" name="name" label="Username" value="{{ $obat->name }}"/>
+                        <x-lazy.input.text id="name" name="name" label="Username" value="{{ $obat->nama }}"/>
+                        <x-lazy.input.text id="harga" name="harga" label="Harga Obat" type="number" value="{{ $obat->harga }}"/>
                         <div class="dropdown-divider mt-3 mb-3"></div>
                         <div class="text-right">
                             <button class="btn my-button my-rounded pl-3 pr-3"><i class="fa fa-send-o mr-2"></i>Save
