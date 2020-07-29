@@ -41,7 +41,7 @@
                             <td>{{ $v->no_diagnosa }}</td>
                             <td>{{ $v->total }}</td>
                             <td class="text-center">
-                                <a data-id="{{ $v->no_diagnosa }}" href="/admin/admin/edit/{{$v->no_diagnosa}}">Detail</a>
+                                <a data-id="{{ $v->no_diagnosa }}" href="/admin/resep/detail/{{$v->no_diagnosa}}">Detail</a>
 {{--                                <a data-id="{{ $v->id }}" href="#" onclick="destroy('{{ $v->user->id }}')"><i class="fa fa-trash-o"></i></a>--}}
                             </td>
                         </tr>

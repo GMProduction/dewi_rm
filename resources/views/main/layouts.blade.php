@@ -37,7 +37,7 @@
         <li class="nav-header my-text-light">Reports</li>
 {{--        <x-sidebar-item url="/admin/reviews" title="Reviews" faIcon="fa fa-comments-o"/>--}}
 {{--        <x-sidebar-item-tree title="Reports" faIcon="fa fa-pie-chart" id="link-reports">--}}
-{{--            <x-sidebar-item url="/admin/items-report" title="Items" faIcon="fa fa-circle-thin" parentId="link-reports"/>--}}
+            <x-sidebar-item url="/admin/report/diagnosa" title="Diagnosa" faIcon="fa fa-circle-thin" parentId="link-reports"/>
 {{--            <x-sidebar-item url="/admin/selling-report" title="Selling" faIcon="fa fa-circle-thin" parentId="link-reports"/>--}}
 {{--            <x-sidebar-item url="/admin/payment-report" title="Payment" faIcon="fa fa-circle-thin" parentId="link-reports"/>--}}
 {{--        </x-sidebar-item-tree>--}}

@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', 'Auth\AuthController@index');
+Route::post('/postlogin', 'Auth\AuthController@login');
 Route::get('/admin', 'MainController@index');
 
 Route::get('/admin/pasien', 'User\PasienController@index');
@@ -51,11 +53,17 @@ Route::post('/admin/obat/patch', 'Main\ObatController@patch');
 Route::post('/admin/obat/destroy/{id}', 'Main\ObatController@destroy');
 
 Route::get('/admin/diagnosa', 'Transaction\DiagnosaController@index');
+Route::get('/admin/diagnosa/list', 'Transaction\DiagnosaController@laporan');
 Route::get('/admin/diagnosa/add', 'Transaction\DiagnosaController@addForm');
 Route::post('/admin/diagnosa/store', 'Transaction\DiagnosaController@add');
 
+Route::get('/admin/report/diagnosa', 'Transaction\DiagnosaController@formLaporan');
+Route::get('/admin/report/diagnosa/print', 'Transaction\DiagnosaController@cetak');
+
 Route::get('/admin/resep', 'Transaction\ResepController@index');
 Route::get('/admin/resep/add', 'Transaction\ResepController@addForm');
+Route::get('/admin/resep/detail/{id}', 'Transaction\ResepController@detail');
+Route::get('/admin/resep/cetak/{id}', 'Transaction\ResepController@detailCetak');
 Route::post('/admin/resep/store', 'Transaction\ResepController@add');
 Route::post('/admin/resep/save', 'Transaction\ResepController@save');
 Route::post('/admin/resep/destroyobat/{id}', 'Transaction\ResepController@destroyObat');

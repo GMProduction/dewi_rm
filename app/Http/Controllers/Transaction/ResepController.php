@@ -10,6 +10,7 @@ use App\Model\Obat;
 use App\Model\Pasien;
 use App\Model\Resep;
 use App\Model\Spesialis;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,6 +40,22 @@ class ResepController extends CustomController
         return view('transaksi.resep.add')->with(['diagnosa' => $diagnosa, 'obat' => $obat, 'resep' => $resep]);
     }
 
+    public function detail($id)
+    {
+        $resep = Resep::with(['diagnosa.dokter.spesialis', 'diagnosa.pasien', 'obat'])->whereHas('diagnosa', function (Builder $query) use ($id) {
+            $query->where('no_diagnosa', '=', $id);
+        })->get();
+//        return $resep->toArray();
+        return view('transaksi.resep.detail')->with(['resep' => $resep]);
+    }
+
+    public function detailCetak($id)
+    {
+        $resep = Resep::with(['diagnosa.dokter.spesialis', 'diagnosa.pasien', 'obat'])->whereHas('diagnosa', function (Builder $query) use ($id) {
+            $query->where('no_diagnosa', '=', $id);
+        })->get();
+        return $this->convertToPdf('cetak.rekam', ['resep' => $resep]);
+    }
     public function add()
     {
         $obat = Obat::findOrFail($this->postField('obat'));
@@ -50,9 +67,10 @@ class ResepController extends CustomController
         $this->insert(resep::class, $data);
         return redirect()->back()->with(['success' => 'success']);
     }
+
     public function save()
     {
-        $resep  = Resep::where('diagnosa_id', '=', null)->update(['diagnosa_id' => $this->postField('diagnosa')]);
+        $resep = Resep::where('diagnosa_id', '=', null)->update(['diagnosa_id' => $this->postField('diagnosa')]);
         return redirect('/admin/');
     }
 

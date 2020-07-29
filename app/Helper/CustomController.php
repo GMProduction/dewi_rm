@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Ramsey\Uuid\Uuid;
+use Yajra\DataTables\DataTables;
 
 class CustomController extends Controller
 {
@@ -189,4 +190,18 @@ class CustomController extends Controller
             'payload' => $data
         ], $status);
     }
+
+    public function convertToPdf($viewRender, $data = [])
+    {
+        $html = view($viewRender)->with($data);
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($html);
+        return $pdf->stream();
+    }
+
+    public function basicDataTables($object)
+    {
+        return DataTables::of($object)->addIndexColumn()->make(true);
+    }
+
 }
