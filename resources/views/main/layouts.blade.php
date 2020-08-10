@@ -23,24 +23,39 @@
     </x-slot>
     <x-slot name="menu">
         <x-sidebar-item url="/admin" title="Dashboard" faIcon="fa fa-tachometer"/>
-        <x-sidebar-item-tree title="Master" faIcon="fa fa-hdd-o" id="link-master">
-            <x-sidebar-item url="/admin/admin" title="Admin" faIcon="fa fa-picture-o" parentId="link-master"></x-sidebar-item>
-            <x-sidebar-item url="/admin/pasien" title="Pasien" faIcon="fa fa-user-o" parentId="link-master"/>
-            <x-sidebar-item url="/admin/dokter" title="Dokter" faIcon="fa fa-tags" parentId="link-master"></x-sidebar-item>
-            <x-sidebar-item url="/admin/spesialis" title="Spesialis" faIcon="fa fa-cube" parentId="link-master"></x-sidebar-item>
-            <x-sidebar-item url="/admin/obat" title="Obat" faIcon="fa fa-picture-o" parentId="link-master"></x-sidebar-item>
-        </x-sidebar-item-tree>
-        <li class="nav-header my-text-light">Transactions</li>
-        <x-sidebar-item url="/admin/diagnosa" title="Diagnosa" faIcon="fa fa-shopping-bag"/>
-        <x-sidebar-item url="/admin/resep" title="Resep" faIcon="fa fa-shopping-bag"/>
-{{--        <x-sidebar-item url="/admin/rekam" title="Rekam" faIcon="fa fa-credit-card"/>--}}
-        <li class="nav-header my-text-light">Reports</li>
-{{--        <x-sidebar-item url="/admin/reviews" title="Reviews" faIcon="fa fa-comments-o"/>--}}
-{{--        <x-sidebar-item-tree title="Reports" faIcon="fa fa-pie-chart" id="link-reports">--}}
-            <x-sidebar-item url="/admin/report/diagnosa" title="Diagnosa" faIcon="fa fa-circle-thin" parentId="link-reports"/>
-{{--            <x-sidebar-item url="/admin/selling-report" title="Selling" faIcon="fa fa-circle-thin" parentId="link-reports"/>--}}
-{{--            <x-sidebar-item url="/admin/payment-report" title="Payment" faIcon="fa fa-circle-thin" parentId="link-reports"/>--}}
-{{--        </x-sidebar-item-tree>--}}
+
+        @if(auth()->user()->level == 'admin')
+            <x-sidebar-item-tree title="Master" faIcon="fa fa-hdd-o" id="link-master">
+                <x-sidebar-item url="/admin/admin" title="Admin" faIcon="fa fa-picture-o"
+                                parentId="link-master"></x-sidebar-item>
+                <x-sidebar-item url="/admin/pasien" title="Pasien" faIcon="fa fa-user-o" parentId="link-master"/>
+                <x-sidebar-item url="/admin/dokter" title="Dokter" faIcon="fa fa-tags"
+                                parentId="link-master"></x-sidebar-item>
+                <x-sidebar-item url="/admin/spesialis" title="Spesialis" faIcon="fa fa-cube"
+                                parentId="link-master"></x-sidebar-item>
+                <x-sidebar-item url="/admin/obat" title="Obat" faIcon="fa fa-picture-o"
+                                parentId="link-master"></x-sidebar-item>
+            </x-sidebar-item-tree>
+        @endif
+        @if(auth()->user()->level != 'pasien')
+            <li class="nav-header my-text-light">Transactions</li>
+            <x-sidebar-item url="/admin/diagnosa" title="Diagnosa" faIcon="fa fa-shopping-bag"/>
+            <x-sidebar-item url="/admin/resep" title="Resep" faIcon="fa fa-shopping-bag"/>
+        @endif
+        <li class="nav-header my-text-light">Laporan</li>
+        @if(auth()->user()->level != 'pasien')
+            <x-sidebar-item url="/admin/report/rekam-medis" title="Rekam Medis" faIcon="fa fa-circle-thin"
+                            parentId="link-reports"/>
+            <x-sidebar-item url="/admin/report/rekam-medis" title="Resep" faIcon="fa fa-circle-thin"
+                            parentId="link-reports"/>
+            <x-sidebar-item url="/admin/report/rekam-medis" title="Data Obat" faIcon="fa fa-circle-thin"
+                            parentId="link-reports"/>
+        @endif
+
+        <li class="nav-header my-text-light">
+            <div class="dropdown-divider"></div>
+        </li>
+        <x-sidebar-item url="/logout" title="Logout" faIcon="fa fa-power-off" parentId="link-reports"/>
     </x-slot>
 </x-sidebar>
 

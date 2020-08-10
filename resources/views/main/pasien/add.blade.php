@@ -37,6 +37,7 @@
                 <div class="card-body">
                     <x-lazy.form.form-basic action="/admin/pasien/store">
                         <x-lazy.input.text id="username" name="username" label="Username"/>
+                        <x-lazy.input.text id="password" name="password" label="Password" type="password"/>
                         <x-lazy.input.text id="nama" name="nama" label="Nama Lengkap Pasien"/>
                         <x-lazy.input.text id="tanggal" name="tanggal" label="Tanggal Lahir" type="date"/>
                         <x-lazy.input.area id="alamat" name="alamat" label="Alamat"/>

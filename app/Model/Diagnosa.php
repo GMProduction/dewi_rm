@@ -19,4 +19,9 @@ class Diagnosa extends Model
     {
         return $this->belongsTo(Pasien::class, 'pasien_id', 'user_id');
     }
+
+    public function resep()
+    {
+        return $this->hasMany(Resep::class, 'diagnosa_id', 'id');
+    }
 }

@@ -43,7 +43,7 @@
                             <td>{{ $v->no_diagnosa}}</td>
                             <td>{{ $v->dokter->nama }}</td>
                             <td>{{ $v->pasien->nama }}</td>
-                            <td>{{ $v->diagnosa }}</td>
+                            <td>{{ hex2bin($v->diagnosa)}}</td>
                             <td class="text-center">
 {{--                                <a data-id="{{ $v->id }}" href="/admin/admin/edit/{{$v->id}}"><i--}}
 {{--                                        class="fa fa-edit"></i></a>--}}

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Pasien;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PasienController extends CustomController
 {
@@ -37,6 +38,7 @@ class PasienController extends CustomController
     {
         $data = [
             'username' => $this->postField('username'),
+            'password' => Hash::make($this->postField('password')),
             'level' => 'pasien'
         ];
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Auth\AuthController@index');
+Route::get('/logout', 'Auth\AuthController@logout');
 Route::post('/postlogin', 'Auth\AuthController@login');
 Route::get('/admin', 'MainController@index');
 
@@ -59,6 +60,9 @@ Route::post('/admin/diagnosa/store', 'Transaction\DiagnosaController@add');
 
 Route::get('/admin/report/diagnosa', 'Transaction\DiagnosaController@formLaporan');
 Route::get('/admin/report/diagnosa/print', 'Transaction\DiagnosaController@cetak');
+Route::get('/admin/report/rekam-medis', 'Laporan\RekamMedisController@index');
+Route::get('/admin/report/rekam-medis/list', 'Laporan\RekamMedisController@laporan');
+Route::get('/admin/report/rekam-medis/print', 'Laporan\RekamMedisController@cetak');
 
 Route::get('/admin/resep', 'Transaction\ResepController@index');
 Route::get('/admin/resep/add', 'Transaction\ResepController@addForm');
